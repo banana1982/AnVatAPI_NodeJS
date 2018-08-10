@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wahengchang/nodejs-firebase-example.git"
+    "url": "https://github.com/banana1982/AnVatAPI_NodeJS.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wahengchang/nodejs-firebase-example/issues"
+    "url": "https://github.com/banana1982/AnVatAPI_NodeJS/issues"
   },
-  "homepage": "https://github.com/wahengchang/nodejs-firebase-example#readme",
+  "homepage": "https://github.com/banana1982/AnVatAPI_NodeJS.git",
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
