@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var parser = bodyParser.urlencoded({ extended : false });
-var app = express();
+var index = express();
 var firebase = require("firebase-admin");
 
 var serviceAccount = require("./serviceAccountKey.json");
@@ -11,10 +11,10 @@ firebase.initializeApp({
     databaseURL: "https://anvatapp.firebaseio.com"
 });
 
-app.use(express.static("public"));
-app.set("view engine","ejs");
-app.set("views", "./views");
-app.listen(8800);
+index.use(express.static("public"));
+index.set("view engine","ejs");
+index.set("views", "./views");
+index.listen(8800);
 
 var db = firebase.database();
 var data_all_ref = db.ref("page"); //Done
@@ -41,7 +41,7 @@ var order_details = [];
 var recipe_group = [];
 var recipe_type = [];
 
-app.post("/info",function (req,res) {
+index.post("/info",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK"
@@ -52,7 +52,7 @@ app.post("/info",function (req,res) {
 data_all_ref.on("value", function(snapshot) {
     data_all = snapshot.val();
 });
-app.post("/getlistall",function (req,res) {
+index.post("/getlistall",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -64,7 +64,7 @@ app.post("/getlistall",function (req,res) {
 AdminLinkPage_ref.on("value", function(snapshot) {
     admin_link_page = snapshot.val();
 });
-app.post("/getadminlinkpage",function (req,res) {
+index.post("/getadminlinkpage",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -76,7 +76,7 @@ app.post("/getadminlinkpage",function (req,res) {
 AdminUsers_ref.on("value", function(snapshot) {
     admin_users = snapshot.val();
 });
-app.post("/getlistadminuser",function (req,res) {
+index.post("/getlistadminuser",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -88,7 +88,7 @@ app.post("/getlistadminuser",function (req,res) {
 CartDetails_ref.on("value", function(snapshot) {
     cart_details = snapshot.val();
 });
-app.post("/getlistcartdetails",function (req,res) {
+index.post("/getlistcartdetails",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -100,7 +100,7 @@ app.post("/getlistcartdetails",function (req,res) {
 Categrory_ref.on("value", function(snapshot) {
     categrory = snapshot.val();
 });
-app.post("/getcategrories",function (req,res) {
+index.post("/getcategrories",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -112,7 +112,7 @@ app.post("/getcategrories",function (req,res) {
 CustomerInfo_ref.on("value", function(snapshot) {
     customer_info = snapshot.val();
 });
-app.post("/getcustomerinfo",function (req,res) {
+index.post("/getcustomerinfo",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -124,7 +124,7 @@ app.post("/getcustomerinfo",function (req,res) {
 LinkPage_ref.on("value", function(snapshot) {
     link_page = snapshot.val();
 });
-app.post("/getlinkPage",function (req,res) {
+index.post("/getlinkPage",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -136,7 +136,7 @@ app.post("/getlinkPage",function (req,res) {
 Menu_ref.on("value", function(snapshot) {
     menu = snapshot.val();
 });
-app.post("/getmenus",function (req,res) {
+index.post("/getmenus",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -148,7 +148,7 @@ app.post("/getmenus",function (req,res) {
 OrderDetails_ref.on("value", function(snapshot) {
     order_details = snapshot.val();
 });
-app.post("/getorderdetails",function (req,res) {
+index.post("/getorderdetails",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -160,7 +160,7 @@ app.post("/getorderdetails",function (req,res) {
 RecipeGroup_ref.on("value", function(snapshot) {
     recipe_group = snapshot.val();
 });
-app.post("/getrecipegroup",function (req,res) {
+index.post("/getrecipegroup",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -172,7 +172,7 @@ app.post("/getrecipegroup",function (req,res) {
 RecipeType_ref.on("value", function(snapshot) {
     recipe_type = snapshot.val();
 });
-app.post("/getrecipetype",function (req,res) {
+index.post("/getrecipetype",function (req, res) {
     var data = {
         code : 1000,
         message : "SC_OK",
@@ -181,7 +181,7 @@ app.post("/getrecipetype",function (req,res) {
     res.send(data);
 });
 
-// app.get("/", function(req, res){
+// index.get("/", function(req, res){
 //     res.render("homepage");
 // });
 
