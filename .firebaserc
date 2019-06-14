@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "anvatapp"
+    "default": "anvatapp",
+    "y": "anvatapp",
+    "staging": "anvatapp"
   }
 }

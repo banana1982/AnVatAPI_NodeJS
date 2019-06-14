@@ -1,6 +1,7 @@
+var http = require("http");
 var express = require("express");
 var bodyParser = require("body-parser");
-var parser = bodyParser.urlencoded({ extended : false });
+var parser = bodyParser.urlencoded({ extended: false });
 var index = express();
 var firebase = require("firebase-admin");
 
@@ -12,9 +13,9 @@ firebase.initializeApp({
 });
 
 index.use(express.static("public"));
-index.set("view engine","ejs");
+index.set("view engine", "ejs");
 index.set("views", "./views");
-index.listen(8800);
+index.listen(8080);
 
 var db = firebase.database();
 var data_all_ref = db.ref("page"); //Done
@@ -41,10 +42,10 @@ var order_details = [];
 var recipe_group = [];
 var recipe_type = [];
 
-index.post("/info",function (req, res) {
+index.post("/info", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK"
+        code: 1000,
+        message: "SC_OK"
     };
     res.send(data);
 });
@@ -52,11 +53,19 @@ index.post("/info",function (req, res) {
 data_all_ref.on("value", function(snapshot) {
     data_all = snapshot.val();
 });
-index.post("/getlistall",function (req, res) {
+index.post("/postlistall", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : data_all
+        code: 1000,
+        message: "SC_OK",
+        data: data_all
+    };
+    res.send(data);
+});
+index.get("getlistall", function(req, res) {
+    var data = {
+        code: 1000,
+        message: "SC_OK",
+        data: data_all
     };
     res.send(data);
 });
@@ -64,11 +73,11 @@ index.post("/getlistall",function (req, res) {
 AdminLinkPage_ref.on("value", function(snapshot) {
     admin_link_page = snapshot.val();
 });
-index.post("/getadminlinkpage",function (req, res) {
+index.post("/getadminlinkpage", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : admin_link_page
+        code: 1000,
+        message: "SC_OK",
+        data: admin_link_page
     };
     res.send(data);
 });
@@ -76,11 +85,11 @@ index.post("/getadminlinkpage",function (req, res) {
 AdminUsers_ref.on("value", function(snapshot) {
     admin_users = snapshot.val();
 });
-index.post("/getlistadminuser",function (req, res) {
+index.post("/getlistadminuser", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : admin_users
+        code: 1000,
+        message: "SC_OK",
+        data: admin_users
     };
     res.send(data);
 });
@@ -88,11 +97,11 @@ index.post("/getlistadminuser",function (req, res) {
 CartDetails_ref.on("value", function(snapshot) {
     cart_details = snapshot.val();
 });
-index.post("/getlistcartdetails",function (req, res) {
+index.post("/getlistcartdetails", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : cart_details
+        code: 1000,
+        message: "SC_OK",
+        data: cart_details
     };
     res.send(data);
 });
@@ -100,11 +109,11 @@ index.post("/getlistcartdetails",function (req, res) {
 Categrory_ref.on("value", function(snapshot) {
     categrory = snapshot.val();
 });
-index.post("/getcategrories",function (req, res) {
+index.post("/getcategrories", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : categrory
+        code: 1000,
+        message: "SC_OK",
+        data: categrory
     };
     res.send(data);
 });
@@ -112,11 +121,11 @@ index.post("/getcategrories",function (req, res) {
 CustomerInfo_ref.on("value", function(snapshot) {
     customer_info = snapshot.val();
 });
-index.post("/getcustomerinfo",function (req, res) {
+index.post("/getcustomerinfo", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : customer_info
+        code: 1000,
+        message: "SC_OK",
+        data: customer_info
     };
     res.send(data);
 });
@@ -124,11 +133,11 @@ index.post("/getcustomerinfo",function (req, res) {
 LinkPage_ref.on("value", function(snapshot) {
     link_page = snapshot.val();
 });
-index.post("/getlinkPage",function (req, res) {
+index.post("/getlinkPage", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : link_page
+        code: 1000,
+        message: "SC_OK",
+        data: link_page
     };
     res.send(data);
 });
@@ -136,11 +145,11 @@ index.post("/getlinkPage",function (req, res) {
 Menu_ref.on("value", function(snapshot) {
     menu = snapshot.val();
 });
-index.post("/getmenus",function (req, res) {
+index.post("/getmenus", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : menu
+        code: 1000,
+        message: "SC_OK",
+        data: menu
     };
     res.send(data);
 });
@@ -148,11 +157,11 @@ index.post("/getmenus",function (req, res) {
 OrderDetails_ref.on("value", function(snapshot) {
     order_details = snapshot.val();
 });
-index.post("/getorderdetails",function (req, res) {
+index.post("/getorderdetails", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : order_details
+        code: 1000,
+        message: "SC_OK",
+        data: order_details
     };
     res.send(data);
 });
@@ -160,11 +169,11 @@ index.post("/getorderdetails",function (req, res) {
 RecipeGroup_ref.on("value", function(snapshot) {
     recipe_group = snapshot.val();
 });
-index.post("/getrecipegroup",function (req, res) {
+index.post("/getrecipegroup", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : recipe_group
+        code: 1000,
+        message: "SC_OK",
+        data: recipe_group
     };
     res.send(data);
 });
@@ -172,16 +181,15 @@ index.post("/getrecipegroup",function (req, res) {
 RecipeType_ref.on("value", function(snapshot) {
     recipe_type = snapshot.val();
 });
-index.post("/getrecipetype",function (req, res) {
+index.post("/getrecipetype", function(req, res) {
     var data = {
-        code : 1000,
-        message : "SC_OK",
-        data : recipe_type
+        code: 1000,
+        message: "SC_OK",
+        data: recipe_type
     };
     res.send(data);
 });
 
-// index.get("/", function(req, res){
-//     res.render("homepage");
-// });
-
+index.get("/", function(req, res) {
+    res.render("index");
+});
